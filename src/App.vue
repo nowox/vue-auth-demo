@@ -2,7 +2,7 @@
   <div id="app">
     <b-nav tabs>
       <b-nav-item :to="{ path: 'login'}">Login</b-nav-item>
-      <b-nav-item :to="{ path: 'counter'}">Counter</b-nav-item>
+      <b-nav-item v-if="loggedIn" :to="{ path: 'counter'}">Counter</b-nav-item>
     </b-nav>
     <div class="hello">
     <img src="./assets/logo.png">
@@ -13,8 +13,19 @@
 </template>
 
 <script>
+import auth from './auth'
 export default {
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      loggedIn: auth.loggedIn()
+    }
+  },
+  create() {
+    auth.onChange = loggedIn => {
+      this.loggedIn = loggedIn
+    }
+  }
 }
 </script>
 
