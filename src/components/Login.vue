@@ -1,13 +1,13 @@
 <template>
   <div v-if="!loggedIn">  
     <b-form class="form-row flex-row-reverse" @submit="onSubmit">
-        <div class="col-1">
-          <b-button type="submit" variant="success">Login</b-button>
+        <div class="col-2">
+          <b-button type="submit" variant="outline-success">Login</b-button>
         </div>      
-        <div class="col-1">
+        <div class="col-3">
         <b-form-input id="pass" :state="!$v.form.pass.$invalid" type="password" v-model="form.pass" required placeholder="Password"/>
         </div>        
-        <div class="col-1">
+        <div class="col-3">
         <b-form-input id="email" :state="!$v.form.email.$invalid" type="text" v-model="form.email" required placeholder="Login"/>
         </div>
     </b-form>

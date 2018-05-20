@@ -9,6 +9,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import './assets/scss/test.scss'
 
+
+
 Vue.use(BootstrapVue)
 Vue.use(Vuelidate)
 

@@ -5,28 +5,15 @@ import auth from '@/auth'
 
 import Counter from '@/components/Counter'
 import Login from '@/components/Login'
+import About from '@/components/About'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/counter',
-      name: 'Counter',
-      component: Counter,
-      beforeEnter: requireAuth
-    },
-    {
-      path: '/about',
-      name: 'About',
-      component: About,
-      beforeEnter: requireAuth
-    }    
+    { path: '/login', component: Login },
+    { path: '/', alias: '/counter', component: Counter },
+    { path: '/about', component: About }    
   ]
 })
 
