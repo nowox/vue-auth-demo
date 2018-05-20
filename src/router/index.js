@@ -20,7 +20,13 @@ export default new Router({
       name: 'Counter',
       component: Counter,
       beforeEnter: requireAuth
-    }
+    },
+    {
+      path: '/about',
+      name: 'About',
+      component: About,
+      beforeEnter: requireAuth
+    }    
   ]
 })
 

@@ -1,14 +1,16 @@
 <template>
-  <div v-if="!loggedIn">
-    <b-container fluid>
-      <b-form @submit="onSubmit">
-        <b-form-group id="auth" label="Login:" label-for="login">
-          <b-form-input id="email" type="text" v-model="form.email" required placeholder="Login"/>
-          <b-form-input id="pass" type="password" v-model="form.pass" required placeholder="Password"/>
-        </b-form-group>
-        <b-button type="submit" variant="primary">Login</b-button>
-      </b-form>
-    </b-container>
+  <div v-if="!loggedIn">  
+    <b-form class="form-row flex-row-reverse" @submit="onSubmit">
+        <div class="col-1">
+          <b-button type="submit" variant="success">Login</b-button>
+        </div>      
+        <div class="col-1">
+        <b-form-input id="pass" :state="!$v.form.pass.$invalid" type="password" v-model="form.pass" required placeholder="Password"/>
+        </div>        
+        <div class="col-1">
+        <b-form-input id="email" :state="!$v.form.email.$invalid" type="text" v-model="form.email" required placeholder="Login"/>
+        </div>
+    </b-form>
   </div>
   <div v-else>
     <b-form @submit="onLogout">
@@ -19,11 +21,28 @@
 
 <script>
 import auth from '../auth'
+import { required, minLength } from 'vuelidate/lib/validators'
+
 export default {
   name: 'Login',
   data () {
-    return { form: {}, loggedIn: auth.loggedIn() }
+    return { 
+      form: {}, 
+      loggedIn: auth.loggedIn() 
+    }
   },
+  validations: {
+    form: {
+      email: {
+        required,
+        minLength: minLength(4)
+      },  
+      pass: {
+        required,
+        minLength: minLength(4)
+      },       
+    }
+  },  
   methods: {
     onSubmit (evt) {
       evt.preventDefault();
@@ -40,6 +59,6 @@ export default {
       auth.logout()
       this.loggedIn = auth.loggedIn()
     }    
-  }
+  },
 }
 </script>

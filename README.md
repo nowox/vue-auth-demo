@@ -1,6 +1,9 @@
-# my-project
+# Increment-Decrement Example
 
-> A Vue.js project
+A Vue.js project that features:
+
+* Authentication
+* Frontend <-> Backend communication
 
 ## Build Setup
 
